@@ -6,8 +6,8 @@ import numpy as np
 
 def main():
     img = cv2.imread('images/board1.jpg')
-    detected_pieces_image = detect_pieces.detect_edges(img)
-    crop_image.save_cropped_images(detected_pieces_image)
+    detected_pieces_image,threshold = detect_pieces.detect_edges(img)
+    crop_image.get_cropped_images(detected_pieces_image, threshold)
 
 
 if __name__ == '__main__':
