@@ -1,0 +1,2 @@
+IMAGE_DIRECTORY = 'images/'
+BOARD_DIM = 8
