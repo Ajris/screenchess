@@ -1,12 +1,15 @@
 import cv2
-import detect_pieces
 import crop_image
+import chess
 
 
 def main():
-    img = cv2.imread('images/board.jpg')
-    detected_pieces_image, threshold, contours = detect_pieces.detect_edges(img)
-    crop_image.find_pieces(detected_pieces_image, threshold, contours)
+    img = cv2.imread('images/board1.jpg')
+    board = chess.Board(None)
+    # detected_pieces_image, threshold, contours = detect_pieces.detect_edges(img)
+    for position, color in crop_image.find_pieces(img):
+        board.set_piece_at(position, chess.Piece(chess.PAWN, color))
+    print(board.fen())
 
 
 if __name__ == '__main__':
