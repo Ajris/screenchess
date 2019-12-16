@@ -1,5 +1,6 @@
-import utils, debug
-from config import *
+from .config import *
+from . import utils
+from . import debug
 
 import math
 import cv2, numpy as np

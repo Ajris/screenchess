@@ -1,4 +1,4 @@
-from config import *
+from .config import *
 from random import randint
 from copy import copy
 

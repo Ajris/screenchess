@@ -1,11 +1,12 @@
-import gc, os, sys, glob, argparse, utils
+import gc, os, sys, glob, argparse
+from . import utils
 print("<<< \x1b[5;32;40m neural-chessboard \x1b[0m >>>")
 
-from config import *
-from utils import ImageObject
-from slid import pSLID, SLID, slid_tendency #== step 1
-from laps import LAPS                       #== step 2
-from llr import LLR, llr_pad                #== step 3
+from .config import *
+from .utils import ImageObject
+from .slid import pSLID, SLID, slid_tendency #== step 1
+from .laps import LAPS                       #== step 2
+from .llr import LLR, llr_pad                #== step 3
 
 from keras import backend as K
 import cv2; load = cv2.imread
@@ -82,6 +83,25 @@ def test(args):
 	print("TEST: %d images" % len(files))
 	
 ################################################################################
+
+def detect_chessboard(mode, input, output):
+	utils.reset()
+	p = argparse.ArgumentParser()
+
+	p.add_argument('mode', nargs=1, type=str, \
+			help='detect | dataset | train')
+	p.add_argument('--input', type=str, \
+			help='input image (default: input.jpg)')
+	p.add_argument('--output', type=str, \
+			help='output path (default: output.jpg)')
+
+	args = p.parse_args([mode, '--input', input, '--output', output])
+	modes = {'detect': detect, 'dataset': dataset, 'train': train, 'test': test}
+	modes[mode](args)
+	print(utils.clock(), "done")
+	K.clear_session()
+	gc.collect()
+
 
 if __name__ == "__main__":
 	utils.reset()

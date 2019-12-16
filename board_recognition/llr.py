@@ -1,4 +1,5 @@
-import utils, debug
+from . import utils
+from . import debug
 
 import scipy, cv2, pyclipper, numpy as np
 import matplotlib.path, matplotlib.pyplot as plt
@@ -7,8 +8,8 @@ import collections, itertools, random, math
 from copy import copy
 na = np.array
 
-from slid import slid_tendency
-from laps import laps_intersections, laps_cluster
+from .slid import slid_tendency
+from .laps import laps_intersections, laps_cluster
 
 ################################################################################
 
@@ -272,7 +273,7 @@ def LLR(img, points, lines):
 	pregroup[0] = llr_unique(pregroup[0])
 	pregroup[1] = llr_unique(pregroup[1])
 
-	from laps import laps_intersections
+	from .laps import laps_intersections
 	debug.image(img) \
 		.lines(lines, color=(0,0,255)) \
 		.points(laps_intersections(lines), color=(255,0,0), size=2) \

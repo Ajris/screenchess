@@ -1,9 +1,11 @@
-import utils, debug, deps
+from . import utils
+from . import debug
+from . import deps
 
 import collections
 import cv2, numpy as np
 import scipy, scipy.cluster
-from config import *
+from .config import *
 
 from keras.models import model_from_json
 __laps_model = 'data/models/laps.model.json'
