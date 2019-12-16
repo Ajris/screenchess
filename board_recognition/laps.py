@@ -8,8 +8,8 @@ import scipy, scipy.cluster
 from .config import *
 
 from keras.models import model_from_json
-__laps_model = 'data/models/laps.model.json'
-__laps_weights = 'data/models/laps.weights.h5'
+__laps_model = 'board_recognition/data/models/laps.model.json'
+__laps_weights = 'board_recognition/data/models/laps.weights.h5'
 NC_LAPS_MODEL = model_from_json(open(__laps_model, 'r').read())
 NC_LAPS_MODEL.load_weights(__laps_weights)
 
