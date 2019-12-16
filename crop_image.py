@@ -54,8 +54,8 @@ def find_pieces(img):
 
 
 def get_aoi(img):
-    height = int(img.shape[0] / np.sqrt(2))
-    width = int(img.shape[1] / np.sqrt(2))
+    height = int(img.shape[0] / 2)
+    width = int(img.shape[1] / 2)
 
     start_x = int((img.shape[0] - height) / 2)
     end_x = int((img.shape[0] + height) / 2)
