@@ -63,7 +63,10 @@ def get_aoi(img):
     start_y = int((img.shape[1] - width) / 2)
     end_y = int((img.shape[1] + width) / 2)
 
-    return img[start_y:end_y, start_x:end_x]
+    aoi = img[start_y:end_y, start_x:end_x]
+    # cv2.imshow('gmacio', aoi)
+    # cv2.waitKey()
+    return aoi
 
 
 def is_occupied(thresh):
