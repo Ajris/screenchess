@@ -27,4 +27,4 @@ class CheckerBoard:
                         elif can_move(column - 1, row - 1):
                             possible_moves[(column, row)].append((column - 1, row - 1))
     def can_move(self, x, y):
-        if
+        pass
