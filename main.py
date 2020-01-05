@@ -8,19 +8,17 @@ from clusterlist import ClusterList
 
 from contextlib import contextmanager
 
-
 @contextmanager
-def video_capture(*args, **kwargs):
+def VideoCapture(*args, **kwargs):
     cap = cv2.VideoCapture(*args, **kwargs)
     try:
         yield cap
     finally:
         cap.release()
 
-
-def main():
+def useCamera():
     count = 0
-    with video_capture(0) as c:
+    with VideoCapture(0) as c:
         while 1:
             success, image = c.read()
             if success:
@@ -31,6 +29,8 @@ def main():
                 break
             time.sleep(0.5)
 
+def main():
+    # useCamera()
     img = cv2.imread('images/input/test4.jpg')
     markers = find_markers(img)
     cluster = ClusterList(lambda x, y: np.linalg.norm(x - y) < 40,

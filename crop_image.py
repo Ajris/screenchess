@@ -1,6 +1,5 @@
 import cv2.cv2 as cv2
 import numpy as np
-import webcolors
 import chess
 
 from config import BOARD_DIM
@@ -18,17 +17,6 @@ def detect_edges(img):
     return contoured_img, thresh, contours
 
 
-def closest_colour(requested_colour):
-    min_colours = {}
-    for key, name in webcolors.css3_hex_to_names.items():
-        r_c, g_c, b_c = webcolors.hex_to_rgb(key)
-        rd = (r_c - requested_colour[0]) ** 2
-        gd = (g_c - requested_colour[1]) ** 2
-        bd = (b_c - requested_colour[2]) ** 2
-        min_colours[(rd + gd + bd)] = name
-    return min_colours[min(min_colours.keys())]
-
-
 def chessboard_squares(img):
     height = img.shape[0] // BOARD_DIM
     width = img.shape[1] // BOARD_DIM
@@ -37,35 +25,27 @@ def chessboard_squares(img):
             yield i, j, img[i * width:(i + 1) * width, j * height:(j + 1) * height]
 
 
-def chessboard_squares1(img, i, j):
-    height = img.shape[0] // BOARD_DIM
-    width = img.shape[1] // BOARD_DIM
-    return img[i * width:(i + 1) * width, j * height:(j + 1) * height]
-
-
 def find_pieces(img):
-    _, thresh, _ = detect_edges(img)
     for x, y, square in chessboard_squares(img):
+        _, thresh, _ = detect_edges(square)
         aoi = get_aoi(square)
         xd = np.array(aoi).mean(axis=(0, 1))
-        if is_occupied(aoi):
+        if is_occupied(thresh):
             position = (7 - x) * 8 + y
             yield position, chess.WHITE if xd.mean() > 120 else chess.BLACK
 
 
 def get_aoi(img):
-    height = int(img.shape[0] / 2)
-    width = int(img.shape[1] / 2)
+    height = img.shape[0] // 2
+    width = img.shape[1] // 2
 
-    start_x = int((img.shape[0] - height) / 2)
-    end_x = int((img.shape[0] + height) / 2)
+    start_x = (img.shape[0] - height) // 2
+    end_x = (img.shape[0] + height) // 2
 
-    start_y = int((img.shape[1] - width) / 2)
-    end_y = int((img.shape[1] + width) / 2)
+    start_y = (img.shape[1] - width) // 2
+    end_y = (img.shape[1] + width) // 2
 
     aoi = img[start_y:end_y, start_x:end_x]
-    # cv2.imshow('gmacio', aoi)
-    # cv2.waitKey()
     return aoi
 
 
