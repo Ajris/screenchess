@@ -3,9 +3,9 @@ import crop_image
 import chess
 import numpy as np
 import time
+from checker_board import CheckerBoard
 from recognize_chessboard import top_down_transform, find_markers
 from clusterlist import ClusterList
-
 from contextlib import contextmanager
 
 
@@ -41,9 +41,11 @@ def main():
     for point in markers:
         cluster.append(point[0])
     warped = top_down_transform(img, np.array(cluster.data))
+    checker_board = CheckerBoard()
     board = chess.Board(None)
     for position, color in crop_image.find_pieces(warped):
         board.set_piece_at(position, chess.Piece(chess.PAWN, color))
+    find_all_possible_moves(board.fen())
     return board.fen()
 
 
