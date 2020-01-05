@@ -1,7 +1,7 @@
 import cv2.cv2 as cv2
 import numpy as np
 import chess
-
+from checkers.color import Color
 from config import BOARD_DIM
 
 
@@ -32,7 +32,7 @@ def find_pieces(img):
         xd = np.array(aoi).mean(axis=(0, 1))
         if is_occupied(thresh):
             position = (7 - x) * 8 + y
-            yield position, chess.WHITE if xd.mean() > 120 else chess.BLACK
+            yield position, Color.WHITE if xd.mean() > 120 else Color.BLACK
 
 
 def get_aoi(img):
