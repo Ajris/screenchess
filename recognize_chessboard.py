@@ -1,4 +1,3 @@
-from collections import UserList
 import numpy as np
 import cv2.cv2 as cv2
 from clusterlist import ClusterList

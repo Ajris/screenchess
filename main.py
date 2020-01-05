@@ -8,17 +8,19 @@ from clusterlist import ClusterList
 
 from contextlib import contextmanager
 
+
 @contextmanager
-def VideoCapture(*args, **kwargs):
+def video_capture(*args, **kwargs):
     cap = cv2.VideoCapture(*args, **kwargs)
     try:
         yield cap
     finally:
         cap.release()
 
+
 def main():
     count = 0
-    with VideoCapture(0) as c:
+    with video_capture(0) as c:
         while 1:
             success, image = c.read()
             if success:

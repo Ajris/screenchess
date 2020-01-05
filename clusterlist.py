@@ -1,5 +1,5 @@
 from collections import UserList
-from typing import Callable, Optional, List, TypeVar
+from typing import Callable, TypeVar
 
 T = TypeVar('T')
 

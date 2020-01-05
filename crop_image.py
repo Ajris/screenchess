@@ -3,7 +3,7 @@ import numpy as np
 import webcolors
 import chess
 
-from config import BOARD_DIM, IMAGE_DIRECTORY
+from config import BOARD_DIM
 
 
 def detect_edges(img):
@@ -48,7 +48,7 @@ def find_pieces(img):
     for x, y, square in chessboard_squares(img):
         aoi = get_aoi(square)
         xd = np.array(aoi).mean(axis=(0, 1))
-        if is_occupied(chessboard_squares1(thresh, x, y)):
+        if is_occupied(aoi):
             position = (7 - x) * 8 + y
             yield position, chess.WHITE if xd.mean() > 120 else chess.BLACK
 
