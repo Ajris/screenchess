@@ -10,8 +10,8 @@ class CheckerBoard:
 
     def find_moves(self, color):
         possible_moves = defaultdict(list)
-        for column in self.board:
-            for row in column:
-                if self.board[column][row].color == color:
-                    moves = color.find_possible_moves(column, row, self.board)
-                    possible_moves[(column, row)].append(moves)
+        for row in self.board:
+            for column in row:
+                if self.board[row][column].color == color:
+                    moves = color.find_possible_moves(row, column, self.board)
+                    possible_moves[(row, column)].append(moves)
