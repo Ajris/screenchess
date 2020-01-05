@@ -4,6 +4,7 @@ import chess
 import numpy as np
 import time
 from checkers.checker_board import CheckerBoard
+from checkers.color import Color
 from recognize_chessboard import top_down_transform, find_markers
 from clusterlist import ClusterList
 from contextlib import contextmanager
@@ -47,8 +48,8 @@ def main():
         checker_board.set_piece(position//8, position%8, color)
         # board.set_piece_at(position, chess.Piece(chess.PAWN, color))
     # return board.fen()
-    print(checker_board)
-    checker_board.find_moves(color.WHITE)
+    print(checker_board.board)
+    checker_board.find_moves(Color.WHITE)
 
 
 if __name__ == '__main__':
