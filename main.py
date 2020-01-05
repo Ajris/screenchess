@@ -16,7 +16,7 @@ def VideoCapture(*args, **kwargs):
     finally:
         cap.release()
 
-def main():
+def useCamera():
     count = 0
     with VideoCapture(0) as c:
         while 1:
@@ -29,6 +29,8 @@ def main():
                 break
             time.sleep(0.5)
 
+def main():
+    # useCamera()
     img = cv2.imread('images/input/test4.jpg')
     markers = find_markers(img)
     cluster = ClusterList(lambda x, y: np.linalg.norm(x - y) < 40,

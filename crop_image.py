@@ -17,18 +17,6 @@ def detect_edges(img):
     cv2.drawContours(contoured_img, contours, -1, (0, 255, 0), 3)
     return contoured_img, thresh, contours
 
-
-def closest_colour(requested_colour):
-    min_colours = {}
-    for key, name in webcolors.css3_hex_to_names.items():
-        r_c, g_c, b_c = webcolors.hex_to_rgb(key)
-        rd = (r_c - requested_colour[0]) ** 2
-        gd = (g_c - requested_colour[1]) ** 2
-        bd = (b_c - requested_colour[2]) ** 2
-        min_colours[(rd + gd + bd)] = name
-    return min_colours[min(min_colours.keys())]
-
-
 def chessboard_squares(img):
     height = img.shape[0] // BOARD_DIM
     width = img.shape[1] // BOARD_DIM
@@ -64,8 +52,6 @@ def get_aoi(img):
     end_y = int((img.shape[1] + width) / 2)
 
     aoi = img[start_y:end_y, start_x:end_x]
-    # cv2.imshow('gmacio', aoi)
-    # cv2.waitKey()
     return aoi
 
 
