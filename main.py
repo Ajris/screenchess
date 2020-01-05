@@ -12,7 +12,8 @@ def main():
     img = cv2.imread('images/input/test4.jpg')
     start = time.time()
     markers = find_markers(img)
-    cluster = ClusterList(lambda x, y: np.linalg.norm(x - y) < 40)
+    cluster = ClusterList(lambda x, y: np.linalg.norm(x - y) < 40,
+                          lambda x, y: ((x[0] + y[0]) / 2, (x[1] + y[1]) / 2))
     for point in markers:
         cluster.append(point[0])
     warped = top_down_transform(img, np.array(cluster.data))
