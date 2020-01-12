@@ -9,4 +9,5 @@ class Color(Enum):
 
     def find_possible_moves(self, row, column, board):
         new_possible_moves = map(lambda x: tuple([y*self.value for y in x]), possible_moves)
+        
         print(list(new_possible_moves))

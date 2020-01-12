@@ -15,3 +15,8 @@ class CheckerBoard:
                 if self.board[row][column] == color:
                     moves = color.find_possible_moves(row, column, self.board)
                     possible_moves[(row, column)].append(moves)
+
+    def __str__(self):
+        for i in range(8):
+            for j in range(8):
+                print(f'{i} {j} {self.board[i][j]}')
