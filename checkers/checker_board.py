@@ -14,8 +14,10 @@ class CheckerBoard:
         for row in range(8):
             for column in range(8):
                 if self.board[row][column] == color:
-                    possible_moves[(row, column)] = [(row - x, column - y) for (x, y) in color.moves]
-        return sample(possible_moves.items(), 1)
+                    possible_moves[(row, column)] = [(row + x, column + y)
+                                                     for (x, y) in color.moves
+                                                     if (row + x in range(0, 7) and column + y in range(0, 7))]
+            return sample(possible_moves.items(), 1)
 
     def print_me(self):
         for i in range(8):

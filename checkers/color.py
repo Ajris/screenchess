@@ -1,6 +1,6 @@
 from enum import Enum
 
-possible_moves = [(1, 1), (-1, 1)]
+possible_moves = [(1, 1), (1, -1)]
 
 
 class Color(Enum):
