@@ -44,11 +44,12 @@ def main():
     checker_board = CheckerBoard()
     for position, color in crop_image.find_pieces(warped):
         checker_board.set_piece(position//8, position%8, color)
-    print(checker_board.board)
+    # print(checker_board.board)
+    checker_board.print_me()
     move = checker_board.find_moves(Color.WHITE)
     print(move)
-    cv2.imshow('xd', warped)
-    cv2.waitKey()
+    # cv2.imshow('xd', warped)
+    # cv2.waitKey()
 
 
 if __name__ == '__main__':
