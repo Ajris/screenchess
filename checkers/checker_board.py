@@ -20,7 +20,8 @@ class CheckerBoard:
                     possible_moves[(row, column)] = [(row + x, column + y)
                                                      for x, y in color.moves
                                                      if self.valid_move(row + x, column + y)]
-        return sample([(x, y) for x, y in possible_moves.items() if y != []], 1)
+        moves = [(x, y) for x, y in possible_moves.items() if y != []]
+        return sample(moves, 1) if moves != [] else None
 
     def print_me(self):
         for i in range(8):
