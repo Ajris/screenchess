@@ -16,4 +16,3 @@ class ClusterList(UserList):
                 self.data[i] = self.merger(el, item)
                 return
         super().append(item)
-

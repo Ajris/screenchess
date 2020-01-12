@@ -1,6 +1,6 @@
 from enum import Enum
 
-possible_moves = [(1, 1), (1, -1)]
+MOVES = [(1, 1), (1, -1)]
 
 
 class Color(Enum):
@@ -9,5 +9,5 @@ class Color(Enum):
 
     @property
     def moves(self):
-        moves = map(lambda x: tuple([y*self.value for y in x]), possible_moves)
+        moves = map(lambda x: tuple([y*self.value for y in x]), MOVES)
         return list(moves)
