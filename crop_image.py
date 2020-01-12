@@ -30,6 +30,7 @@ def find_pieces(img):
         _, thresh, _ = detect_edges(square)
         aoi = get_aoi(square)
         xd = np.array(aoi).mean(axis=(0, 1))
+        print(xd)
         if is_occupied(thresh):
             position = (7 - x) * 8 + y
             yield position, Color.WHITE if xd.mean() > 120 else Color.BLACK
