@@ -8,6 +8,10 @@ class CheckerBoard:
     def set_piece(self, x, y, color):
         self.board[x][y] = color
 
+    def valid_move(self, x, y):
+        valid_range = x in range(7) and y in range(7)
+        return valid_range and self.board[x][y] is None
+
     def find_moves(self, color):
         possible_moves = {}
         for row in range(8):
@@ -15,7 +19,7 @@ class CheckerBoard:
                 if self.board[row][column] == color:
                     possible_moves[(row, column)] = [(row + x, column + y)
                                                      for (x, y) in color.moves
-                                                     if (row + x in range(0, 7) and column + y in range(0, 7))]
+                                                     if self.valid_move(row + x, column + y)]
         return sample(possible_moves.items(), 1)
 
     def print_me(self):
