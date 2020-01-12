@@ -46,7 +46,7 @@ def main():
         checker_board.set_piece(position//8, position%8, color)
     # print(checker_board.board)
     checker_board.print_me()
-    move = checker_board.find_moves(Color.WHITE)
+    move = checker_board.find_moves(Color.BLACK)
     print(move)
     # cv2.imshow('xd', warped)
     # cv2.waitKey()

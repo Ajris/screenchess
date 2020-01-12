@@ -1,4 +1,3 @@
-from collections import defaultdict
 from random import sample
 
 
@@ -10,14 +9,14 @@ class CheckerBoard:
         self.board[x][y] = color
 
     def find_moves(self, color):
-        possible_moves = defaultdict(list)
+        possible_moves = {}
         for row in range(8):
             for column in range(8):
                 if self.board[row][column] == color:
                     possible_moves[(row, column)] = [(row + x, column + y)
                                                      for (x, y) in color.moves
                                                      if (row + x in range(0, 7) and column + y in range(0, 7))]
-            return sample(possible_moves.items(), 1)
+        return sample(possible_moves.items(), 1)
 
     def print_me(self):
         for i in range(8):
