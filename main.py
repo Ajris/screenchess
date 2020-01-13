@@ -17,7 +17,7 @@ def camera(*args, **kwargs):
 
 def main():
     # useCamera()
-    img = cv2.imread('images/input/eeheh.jpg')
+    img = cv2.imread('images/input/3.jpg')
     markers = recognize_chessboard.find_markers(img)
     cluster = clusterlist.ClusterList(lambda x, y: np.linalg.norm(x - y) < 40,
                                       lambda x, y: ((x[0] + y[0]) / 2, (x[1] + y[1]) / 2))
