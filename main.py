@@ -37,19 +37,16 @@ def main():
     for point in markers:
         cluster.append(point[0])
     cluster.trim(5)
-    for i in cluster:
-        print(i, type(i))
-    print(cluster.data)
     warped = recognize_chessboard.top_down_transform(img, np.array(cluster.data))
     checker_board = CheckerBoard()
     for position, color in crop_image.find_pieces(warped):
-        checker_board.set_piece(position//8, position%8, color)
+        checker_board.set_piece(position//8, position % 8, color)
     # print(checker_board.board)
     checker_board.print_me()
     move = checker_board.find_moves(Color.BLACK)
-    print(move)
     cv2.imshow('xd', warped)
     cv2.waitKey()
+    print(move)
 
 
 if __name__ == '__main__':
