@@ -14,10 +14,23 @@ def camera(*args, **kwargs):
     finally:
         cap.release()
 
+# def use_camera():
+#     count = 0
+#     with camera(0) as c:
+#         while 1:
+#             success, image = c.read()
+#             if success:
+#                 cv2.imwrite(f'images/output/{count}.jpg', image)
+#                 print(f'SAVED: {count}')
+#                 count = count + 1
+#                 # recognize_img(image, count)
+#             else:
+#                 break
+#             # time.sleep(2)
 
 def main():
     # useCamera()
-    img = cv2.imread('images/input/lol2.jpg')
+    img = cv2.imread('images/input/test.jpg')
     markers = recognize_chessboard.find_markers(img)
     cluster = clusterlist.ClusterList(lambda x, y: np.linalg.norm(x - y) < 40,
                                       lambda x, y: ((x[0] + y[0]) / 2, (x[1] + y[1]) / 2))

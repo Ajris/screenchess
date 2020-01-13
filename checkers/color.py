@@ -11,3 +11,4 @@ class Color(Enum):
     def moves(self):
         moves = map(lambda x: tuple([y*self.value for y in x]), MOVES)
         return list(moves)
+
