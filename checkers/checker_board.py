@@ -10,7 +10,7 @@ class CheckerBoard:
 
     @staticmethod
     def valid_move_on_board(x, y):
-        valid_range = x in range(7) and y in range(7)
+        valid_range = x in range(8) and y in range(8)
         return valid_range
 
     def find_moves(self, color):
@@ -22,6 +22,7 @@ class CheckerBoard:
                                                                             column) + self.find_capture_moves(color,
                                                                                                               row,
                                                                                                               column)
+                    print(row, column, possible_moves[(row, column)])
         moves = [(x, y) for x, y in possible_moves.items() if y != []]
         return sample(moves, 1) if moves != [] else None
 
@@ -32,10 +33,10 @@ class CheckerBoard:
 
     def find_capture_moves(self, color, row, column):
         res = []
-        for x, y in color.moves:
-            if self.valid_move_on_board(row + 2 * x, column + 2 * y) and self.board[row + x][column + y] == -color.value:
-                res += self.find_capture_moves(color, column + 2 * y, row + 2 * x) + [(row + 2 * x, column + 2 * y)]
 
+        for x, y in color.moves:
+            if self.valid_move_on_board(row + 2 * x, column + 2 * y) and self.board[row + 2*x][column + 2*y] is None and self.board[row + x][column + y] is not None and self.board[row + x][column + y].value == -color.value:
+                res += self.find_capture_moves(color, row + 2 * x, column + 2*y) + [(row + 2 * x, column + 2 * y)]
         return res
 
     def print_me(self):
