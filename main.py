@@ -17,7 +17,7 @@ def camera(*args, **kwargs):
 
 def main():
     # useCamera()
-    img = cv2.imread('images/input/lol2.jpg')
+    img = cv2.imread('images/input/eeheh.jpg')
     markers = recognize_chessboard.find_markers(img)
     cluster = clusterlist.ClusterList(lambda x, y: np.linalg.norm(x - y) < 40,
                                       lambda x, y: ((x[0] + y[0]) / 2, (x[1] + y[1]) / 2))
@@ -27,10 +27,12 @@ def main():
     warped = recognize_chessboard.top_down_transform(img, np.array(cluster.data))
     checker_board = CheckerBoard()
     for position, color in crop_image.find_pieces(warped):
-        checker_board.set_piece(position//8, position%8, color)
+        checker_board.set_piece(position//8, position % 8, color)
     # print(checker_board.board)
     checker_board.print_me()
     move = checker_board.find_moves(Color.BLACK)
+    cv2.imshow('xd', warped)
+    cv2.waitKey()
     print(move)
 
 
