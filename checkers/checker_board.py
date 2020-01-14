@@ -26,4 +26,5 @@ class CheckerBoard:
     def print_me(self):
         for i in range(8):
             for j in range(8):
-                print(i, j, self.board[i][j])
+                if self.board[i][j]:
+                    print(i, j, self.board[i][j])
