@@ -24,7 +24,7 @@ class CheckerBoard:
                                                                                                               column)
                     print(row, column, possible_moves[(row, column)])
         moves = [(x, y) for x, y in possible_moves.items() if y != []]
-        return sample(moves, 1) if moves != [] else None
+        return sample(moves, 1)[0] if moves != [] else None
 
     def find_nearest_moves(self, color, row, column):
         return [(row + x, column + y)

@@ -11,8 +11,8 @@ def find_markers(img):
     upper_red = np.array([180, 255, 255])
     mask1 = cv2.inRange(hsv, lower_red, upper_red)
     mask = mask0 + mask1
-    #cv2.imshow('xd', cv2.bitwise_and(img, img, mask=mask))
-    #cv2.waitKey()
+    # cv2.imshow('xd', cv2.bitwise_and(img, img, mask=mask))
+    # cv2.waitKey()
     points = cv2.findNonZero(mask)
     return points
 

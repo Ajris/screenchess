@@ -1,7 +1,7 @@
 import cv2.cv2 as cv2
 import numpy as np
-from checkers.color import Color
-from config import BOARD_DIM
+from ..checkers.color import Color
+from ..config import BOARD_DIM
 
 
 def detect_edges(img):
